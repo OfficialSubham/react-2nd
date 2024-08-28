@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 
 export default function About(props) {
   // const [btnName, setBtnName] = useState("Enable Dark Mode");
@@ -34,6 +34,17 @@ export default function About(props) {
   //     setBtnName("Enable Light Mode");
   //   }
   // };
+
+
+
+
+  const showProp = () => {
+    // console.log(props.style);
+    props.setStyle({
+      "background" : "#000",
+      "color": "#fff"
+    })
+  }
 
   return (
     <>
@@ -138,6 +149,16 @@ export default function About(props) {
           {btnName}
         </button>
       </div> */}
+
+      <div className="container">
+        <button
+          type="button"
+          className="btn btn-primary mx-3 my-2"
+          onClick={props.changeAboutStyle}
+        >
+          Change About Theme
+        </button>
+      </div>
     </>
   );
 }
