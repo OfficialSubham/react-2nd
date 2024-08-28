@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 
-export default function Textform() {
+export default function Textform(props) {
 
   const [text, setText] = useState("Enter The Text")
 
@@ -25,9 +25,24 @@ export default function Textform() {
     setText(e.target.value)
   }
 
+  const wordCounter = () => {
+    if(text.length === 0) {
+      return 0;
+    }
+    else {
+      if(text[text.length -1] === " ") {
+        return text.split(" ").length - 1
+      }
+      else {
+        return text.split(" ").length
+
+      }
+    }
+  }
+
   return (
     <>
-      <div className="mb-3 my-3">
+      <div className="mb-3 my-3" style={{"backgroundColor": props.style.background}}>
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           Customise Your Text Here
         </label>
@@ -37,6 +52,9 @@ export default function Textform() {
           rows="10"
           value={text}
           onChange={writeText}
+          style={{"backgroundColor": props.style.background,
+                  "color": props.style.color
+          }}
         ></textarea>
       </div>
 
@@ -50,6 +68,15 @@ export default function Textform() {
         <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCopy}>
           Copy the Text
         </button>
+      </div>
+
+      <div className="container">
+        <h3>
+          Counter
+        </h3>
+        <div className="my-3"> 
+          {wordCounter()} number of words and {text.length} number of Letters
+        </div>
       </div>
 
       <div className="container my-3">

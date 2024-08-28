@@ -1,10 +1,10 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 
-
-export default function Navbar() {
+export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme={props.theme === "dark" ? "dark" : "light"
+    }>
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           OfficialSubham
@@ -32,7 +32,6 @@ export default function Navbar() {
                 About
               </a>
             </li> */}
-
           </ul>
           {/* <form className="d-flex" role="search">
             <input
@@ -46,8 +45,22 @@ export default function Navbar() {
             </button>
           </form> */}
 
-            
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={props.changeTheme}
 
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Change Theme
+            </label>
+          </div>
         </div>
       </div>
     </nav>
