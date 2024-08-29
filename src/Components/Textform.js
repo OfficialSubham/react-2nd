@@ -6,18 +6,36 @@ export default function Textform(props) {
   const [text, setText] = useState("Enter The Text")
 
   const clickToSmall = () => {
-    let newText = text.toLocaleLowerCase();
-    setText(newText)
+    if(text) {
+      let newText = text.toLocaleLowerCase();
+      setText(newText)
+      props.showAlert("success", "All text are now Small")
+    }
+    else {
+      props.showAlert("warning", "There is no text")
+    }
   }
 
   const clickToCapital = () => {
-    let newText = text.toLocaleUpperCase();
-    setText(newText)
+    if(text) {
+      let newText = text.toLocaleUpperCase();
+      setText(newText)
+      props.showAlert("success", "All text are now Capital")
+    }
+    else {
+      props.showAlert("warning", "There is no text")
+    }
   }
 
   const clickToCopy = () => {
     // let text = text;
-    navigator.clipboard.writeText(text)
+    if(text) {
+      navigator.clipboard.writeText(text)
+      props.showAlert("success", "Message is copied to your clipboard")
+    }
+    else {
+      props.showAlert("warning", "There is no text")
+    }
   }
 
   const writeText = (e) => {
