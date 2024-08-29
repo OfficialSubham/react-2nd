@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import Textform from "./Components/Textform";
 import { useState } from "react";
+import Alert from './Components/Alert'
 // import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
@@ -13,11 +14,23 @@ function App() {
     color: "#ffffff",
   });
 
-  const [aboutStyle, setAboutStyle] = useState(style)
+  const [aboutStyle, setAboutStyle] = useState(style);
+
+  const [alert, setAlert] = useState(null)
 
   document.body.style.backgroundColor = style.background
   document.body.style.color = style.color
 
+  function showAlert(status, message) {
+    setAlert({
+      status: status,
+      message: message
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 1500)
+    
+  }
 
   function changeTheme() {
     if (theme === "dark") {
@@ -98,9 +111,10 @@ function App() {
     //Above is for using Router in React
     <>
       <Navbar changeTheme={changeTheme} theme={theme} changeStyle={changeStyle} style={style}/>
+      <Alert alert={alert}/>
       <div className="container">
-        <Textform style={style}/>
-        <About style={aboutStyle} setStyle={setStyle} theme={theme} changeAboutStyle={changeAboutStyle}/>
+        <Textform style={style} showAlert={showAlert}/>
+        <About style={aboutStyle} setStyle={setStyle} theme={theme} changeAboutStyle={changeAboutStyle} showAlert={showAlert}/>
       </div>
     </>
   );
