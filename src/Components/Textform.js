@@ -43,6 +43,12 @@ export default function Textform(props) {
     setText(e.target.value)
   }
 
+  const clickToClear = () => {
+    let newText = "";
+    setText(newText);
+    props.showAlert("success", "Text is Now Cleared")
+  }
+
   const wordCounter = () => {
     if(text.length === 0) {
       return 0;
@@ -85,6 +91,9 @@ export default function Textform(props) {
         </button>
         <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCopy}>
           Copy the Text
+        </button>
+        <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToClear}>
+          Clear the Text
         </button>
       </div>
 
