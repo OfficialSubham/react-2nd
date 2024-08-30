@@ -109,7 +109,7 @@ export default function Textform(props) {
       <div className="container my-3">
         <h3>Preview</h3>
         <div>
-          {text}
+          {text.length === 0 ? "Nothing to preview" : text}
         </div>
       </div>
 
