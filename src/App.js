@@ -3,11 +3,10 @@ import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import Textform from "./Components/Textform";
 import { useState } from "react";
-import Alert from './Components/Alert'
+import Alert from "./Components/Alert";
 // import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-
   const [theme, setTheme] = useState("dark");
   const [style, setStyle] = useState({
     background: "#121212",
@@ -16,35 +15,59 @@ function App() {
 
   const [aboutStyle, setAboutStyle] = useState(style);
 
-  const [alert, setAlert] = useState(null)
+  const [alert, setAlert] = useState(null);
 
-  document.body.style.backgroundColor = style.background
-  document.body.style.color = style.color
+  document.body.style.backgroundColor = style.background;
+  document.body.style.color = style.color;
+
+  const customiseTheme = () => {
+    let primaryColor = document.getElementById("primaryColor");
+    // let secondaryColor = document.getElementById("secondaryColor")
+    // console.log(primaryColor.value);
+    if (theme === "dark") {
+      setStyle({
+        background: primaryColor.value,
+        color: "#000000",
+      });
+      setAboutStyle({
+        background: primaryColor.value,
+        color: "#000000",
+      });
+    } else {
+      setStyle({
+        background: primaryColor.value,
+        color: "#ffffff",
+      });
+      setAboutStyle({
+        background: primaryColor.value,
+        color: "#ffffff",
+      });
+    }
+  };
 
   // let timeOutId;
 
   function showAlert(status, message) {
     setAlert({
       status: status,
-      message: message
+      message: message,
     });
     // if(timeOutId) {
-      // clearTimeout(timeOutId);
+    // clearTimeout(timeOutId);
     // }
     setTimeout(() => {
-      setAlert(null)
-    }, 1500)
-    // console.log(timeOutId); 
+      setAlert(null);
+    }, 1500);
+    // console.log(timeOutId);
   }
 
   function changeTheme() {
     if (theme === "dark") {
       setTheme("light");
-      showAlert("success", "Theme is set to Light Mode")
+      showAlert("success", "Theme is set to Light Mode");
     } else {
       setTheme("dark");
-      showAlert("success", "Theme is set to Dark Mode")
-
+      showAlert("success", "Theme is set to Dark Mode");
     }
     changeStyle();
   }
@@ -69,28 +92,23 @@ function App() {
         color: "#ffffff",
       });
     }
-    
   }
 
-  function changeAboutStyle () {
-    if(aboutStyle.color === "#000000") {
+  function changeAboutStyle() {
+    if (aboutStyle.color === "#000000") {
       setAboutStyle({
         background: "#000000",
         color: "#ffffff",
-        
-      })
-      showAlert("success", "About is set to Dark Mode")
-    }
-    else {
+      });
+      showAlert("success", "About is set to Dark Mode");
+    } else {
       setAboutStyle({
         background: "#cccccc",
         color: "#000000",
-      })
-      showAlert("success", "About is set to Light Mode")
+      });
+      showAlert("success", "About is set to Light Mode");
     }
   }
-
-
 
   return (
     // <>
@@ -120,11 +138,24 @@ function App() {
     // </>
     //Above is for using Router in React
     <>
-      <Navbar changeTheme={changeTheme} theme={theme} changeStyle={changeStyle} style={style} showAlert={showAlert}/>
-      <Alert alert={alert}/>
+      <Navbar
+        changeTheme={changeTheme}
+        theme={theme}
+        changeStyle={changeStyle}
+        style={style}
+        showAlert={showAlert}
+        customiseTheme={customiseTheme}
+      />
+      <Alert alert={alert} />
       <div className="container">
-        <Textform style={style} showAlert={showAlert}/>
-        <About style={aboutStyle} setStyle={setStyle} theme={theme} changeAboutStyle={changeAboutStyle} showAlert={showAlert}/>
+        <Textform style={style} showAlert={showAlert} />
+        <About
+          style={aboutStyle}
+          setStyle={setStyle}
+          theme={theme}
+          changeAboutStyle={changeAboutStyle}
+          showAlert={showAlert}
+        />
       </div>
     </>
   );
