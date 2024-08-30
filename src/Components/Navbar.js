@@ -1,10 +1,17 @@
+import { getElementError } from "@testing-library/react";
 import React from "react";
 // import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme={props.theme === "dark" ? "dark" : "light"
-    }>
+    <nav
+      className="navbar navbar-expand-lg bg-body-tertiary"
+      data-bs-theme={props.theme === "dark" ? "dark" : "light"}
+      style={{
+        height: "80px",
+      }}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           OfficialSubham
@@ -45,6 +52,19 @@ export default function Navbar(props) {
             </button>
           </form> */}
 
+          <div className="">
+            <input
+              type="color"
+              className="mx-2"
+              id="primaryColor"
+            />
+            {/* <input type="color" className="mx-2"  id="secondaryColor"/> */}
+
+            <button className="btn btn-primary mx-2" onClick={props.customiseTheme}>
+              Customise Theme
+            </button>
+          </div>
+
           <div className="form-check form-switch">
             <input
               className="form-check-input"
@@ -52,11 +72,15 @@ export default function Navbar(props) {
               role="switch"
               id="flexSwitchCheckDefault"
               onClick={props.changeTheme}
-
             />
             <label
               className="form-check-label"
               htmlFor="flexSwitchCheckDefault"
+              style={
+                {
+                  color: props.theme === "dark" ? "#ffffff" : "#000000"
+                }
+              }
             >
               Change Theme
             </label>

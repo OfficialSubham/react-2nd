@@ -67,9 +67,9 @@ export default function Textform(props) {
   return (
     <>
       <div className="mb-3 my-3" style={{"backgroundColor": props.style.background}}>
-        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+        <h2 htmlFor="exampleFormControlTextarea1" className="form-label">
           Customise Your Text Here
-        </label>
+        </h2>
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"
