@@ -43,6 +43,12 @@ export default function Textform(props) {
     setText(e.target.value)
   }
 
+  const clickToClear = () => {
+    let newText = "";
+    setText(newText);
+    props.showAlert("success", "Text is Now Cleared")
+  }
+
   const wordCounter = () => {
     if(text.length === 0) {
       return 0;
@@ -77,14 +83,17 @@ export default function Textform(props) {
       </div>
 
       <div className="container">
-        <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToSmall}>
+        <button disabled={text.length === 0} type="button" className="btn btn-primary mx-3 my-2" onClick={clickToSmall}>
           Make the Text Smaller
         </button>
-        <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCapital}>
+        <button  disabled={text.length === 0} type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCapital}>
           Make the Text Capital
         </button>
-        <button type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCopy}>
+        <button  disabled={text.length === 0} type="button" className="btn btn-primary mx-3 my-2" onClick={clickToCopy}>
           Copy the Text
+        </button>
+        <button  disabled={text.length === 0} type="button" className="btn btn-primary mx-3 my-2" onClick={clickToClear}>
+          Clear the Text
         </button>
       </div>
 
@@ -100,7 +109,7 @@ export default function Textform(props) {
       <div className="container my-3">
         <h3>Preview</h3>
         <div>
-          {text}
+          {text.length === 0 ? "Nothing to preview" : text}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function About(props) {
   // const [btnName, setBtnName] = useState("Enable Dark Mode");
@@ -38,13 +38,13 @@ export default function About(props) {
 
 
 
-  const showProp = () => {
-    // console.log(props.style);
-    props.setStyle({
-      "background" : "#000",
-      "color": "#fff"
-    })
-  }
+  // const showProp = () => {
+  //   // console.log(props.style);
+  //   props.setStyle({
+  //     "background" : "#000",
+  //     "color": "#fff"
+  //   })
+  // }
 
   return (
     <>

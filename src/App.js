@@ -21,23 +21,30 @@ function App() {
   document.body.style.backgroundColor = style.background
   document.body.style.color = style.color
 
+  // let timeOutId;
+
   function showAlert(status, message) {
     setAlert({
       status: status,
       message: message
-    })
+    });
+    // if(timeOutId) {
+      // clearTimeout(timeOutId);
+    // }
     setTimeout(() => {
       setAlert(null)
     }, 1500)
-    
+    // console.log(timeOutId); 
   }
 
   function changeTheme() {
     if (theme === "dark") {
       setTheme("light");
-      
+      showAlert("success", "Theme is set to Light Mode")
     } else {
       setTheme("dark");
+      showAlert("success", "Theme is set to Dark Mode")
+
     }
     changeStyle();
   }
@@ -70,13 +77,16 @@ function App() {
       setAboutStyle({
         background: "#000000",
         color: "#ffffff",
+        
       })
+      showAlert("success", "About is set to Dark Mode")
     }
     else {
       setAboutStyle({
         background: "#cccccc",
         color: "#000000",
       })
+      showAlert("success", "About is set to Light Mode")
     }
   }
 
@@ -110,7 +120,7 @@ function App() {
     // </>
     //Above is for using Router in React
     <>
-      <Navbar changeTheme={changeTheme} theme={theme} changeStyle={changeStyle} style={style}/>
+      <Navbar changeTheme={changeTheme} theme={theme} changeStyle={changeStyle} style={style} showAlert={showAlert}/>
       <Alert alert={alert}/>
       <div className="container">
         <Textform style={style} showAlert={showAlert}/>
