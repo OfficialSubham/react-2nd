@@ -55,10 +55,10 @@ export default function Textform(props) {
     }
     else {
       if(text[text.length -1] === " ") {
-        return text.split(" ").length - 1
+        return text.split(/\s+/).length - 1 //split the word with one or more white spaces
       }
       else {
-        return text.split(" ").length
+        return text.split(/\s+/).length
 
       }
     }
