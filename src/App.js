@@ -4,7 +4,7 @@ import About from "./Components/About";
 import Textform from "./Components/Textform";
 import { useState } from "react";
 import Alert from "./Components/Alert";
-// import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -138,25 +138,42 @@ function App() {
     // </>
     //Above is for using Router in React
     <>
-      <Navbar
-        changeTheme={changeTheme}
-        theme={theme}
-        changeStyle={changeStyle}
-        style={style}
-        showAlert={showAlert}
-        customiseTheme={customiseTheme}
-      />
-      <Alert alert={alert} />
-      <div className="container">
-        <Textform style={style} showAlert={showAlert} />
-        <About
-          style={aboutStyle}
-          setStyle={setStyle}
+      <Router>
+        <Navbar
+          changeTheme={changeTheme}
           theme={theme}
-          changeAboutStyle={changeAboutStyle}
+          changeStyle={changeStyle}
+          style={style}
           showAlert={showAlert}
+          customiseTheme={customiseTheme}
         />
-      </div>
+        <Alert alert={alert} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="container">
+                <Textform style={style} showAlert={showAlert} />
+              </div>
+            }
+          />
+
+          <Route
+            path="/about"
+            element={
+              <div className="container">
+                <About
+                  style={aboutStyle}
+                  setStyle={setStyle}
+                  theme={theme}
+                  changeAboutStyle={changeAboutStyle}
+                  showAlert={showAlert}
+                />
+              </div>
+            }
+          />
+        </Routes>
+      </Router>
     </>
   );
 }
